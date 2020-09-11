@@ -28,7 +28,7 @@ def generate_qrcodes(request):
     context = {}
     print("First, let's see whether we have any to generate")
 
-    athletes = Athlete.objects.filter(checksum__isnull=True)
+    athletes = Athlete.objects.all()#filter(checksum__isnull=True)
 
     for athlete in athletes:
         print(athlete, athlete.id, athlete.email, athlete.checksum)
@@ -36,7 +36,7 @@ def generate_qrcodes(request):
         checksum = hashlib.sha256(uuid_bytes).hexdigest()
         print(checksum)
         athlete.checksum = checksum
-        url = "http://www.irreverence.co.uk/pubrun/redirect?data={}{}" \
+        url = "https://mkns.pythonanywhere.com/run/view_qr_code?data={}{}" \
             .format(athlete.checksum, athlete.id)
         print(url)
 
