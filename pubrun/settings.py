@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+# pylint is throwing a wobbly for no apparently good reason.
+# so i'm shutting it up, at least until I understand how to
+# properly fix it
+# pylint: disable=import-error,unused-import
 from pubrun.secrets import SECRET_KEY
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
