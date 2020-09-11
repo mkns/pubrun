@@ -1,3 +1,5 @@
 .vscode
 db.sqlite3
 secrets.py
+poc/__pycache__/
+pubrun/__pycache__/
