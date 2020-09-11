@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>PubRun: </title>
+  </head>
+  <body>
+
+    <h1>PubRun: </h1>
+
+    <table cellspacing=0 cellpadding=3 border=1>
+      <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Checksum</th>
+          </tr>
+      </thead>
+      <tbody>
+{% for athlete in athletes %}
+          <tr>
+            <td>{{athlete.id}}</td>
+            <td>{{athlete.name}}</td>
+            <td>{{athlete.email}}</td>
+            <td><a href="/run/view_qr_code?data={{athlete.checksum}}{{athlete.id}}">{{athlete.checksum}}</a></td>
+          </tr>
+{% endfor %}
+      </tbody>
+  </table>
+
+  </body>
+</html>

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'poc',
+    'run',
 ]
 
 MIDDLEWARE = [
@@ -123,6 +124,6 @@ STATIC_URL = '/static/'
 
 # My shit
 
-LOGIN_REDIRECT_URL = '/poc/'
-LOGOUT_REDIRECT_URL = '/poc/'
+LOGIN_REDIRECT_URL = '/run/'
+LOGOUT_REDIRECT_URL = '/run/'
 STATIC_ROOT = "/home/mkns/pubrun/static"
