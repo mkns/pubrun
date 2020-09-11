@@ -125,3 +125,4 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/poc/'
 LOGOUT_REDIRECT_URL = '/poc/'
+STATIC_ROOT = "/home/mkns/pubrun/static"
