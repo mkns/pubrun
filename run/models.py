@@ -13,3 +13,23 @@ class Athlete(models.Model):
 
     def __str__(self):
         return self.name
+
+class Runs(models.Model):
+    """ One row for every person's run """
+    STATUS = (
+        ('registered', 'Registered'),
+        ('arrived', 'Arrived'),
+        ('cancelled', 'Cancelled'),
+    )
+    athlete_id = models.IntegerField(null=False)
+    date = models.DateField(null=False)
+    status = models.CharField(
+        max_length=32,
+        choices=STATUS,
+        default='registered',
+    )
+    def __str__(self):
+        return str(self.athlete_id)
+    class Meta:
+        verbose_name = "Run"
+        unique_together = ('athlete_id', 'date')
