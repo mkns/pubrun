@@ -121,7 +121,7 @@ def add_athlete_to_run(request):
     print(athlete, athlete.id)
 
     try:
-        run = Runs.objects.create(athlete_id=athlete.id, date=date, status="registered")
+        run = Runs.objects.create(athlete=athlete, date=date, status="registered")
         run.save()
     except IntegrityError as error:
         print("Ouch... they probably already registered? {}".format(error))

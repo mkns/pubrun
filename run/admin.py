@@ -13,5 +13,5 @@ admin.site.register(models.Athlete, AthleteAdmin)
 
 class RunsAdmin(admin.ModelAdmin):
     """ Nicer display within Admin section """
-    list_display = ('id', 'athlete_id', 'date', 'status')
+    list_display = ('id', 'athlete', 'date', 'status')
 admin.site.register(models.Runs, RunsAdmin)

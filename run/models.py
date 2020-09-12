@@ -15,13 +15,13 @@ class Athlete(models.Model):
         return self.name
 
 class Runs(models.Model):
-    """ One row for every person's run """
+    """ foo """
     STATUS = (
         ('registered', 'Registered'),
         ('arrived', 'Arrived'),
         ('cancelled', 'Cancelled'),
     )
-    athlete_id = models.IntegerField(null=False)
+    athlete = models.ForeignKey(Athlete, on_delete=models.CASCADE, default=0)
     date = models.DateField(null=False)
     status = models.CharField(
         max_length=32,
@@ -29,7 +29,7 @@ class Runs(models.Model):
         default='registered',
     )
     def __str__(self):
-        return str(self.athlete_id)
+        return str(self.athlete)
     class Meta:
         verbose_name = "Run"
-        unique_together = ('athlete_id', 'date')
+        unique_together = ('athlete', 'date')
