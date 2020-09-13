@@ -32,7 +32,7 @@ def generate_qrcodes(request):
     print("First, let's see whether we have any to generate")
 
     # TODO: remember to put the filter back in
-    athletes = Athlete.objects.filter(checksum__isnull=True)
+    athletes = Athlete.objects.all()#filter(checksum__isnull=True)
 
     for athlete in athletes:
         print(athlete, athlete.id, athlete.email, athlete.checksum)
