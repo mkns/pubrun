@@ -4,8 +4,6 @@ import uuid
 import hashlib
 import datetime
 import configparser
-import ast
-import os.path
 from io import BytesIO
 from run.models import Athlete, Runs
 import qrcode
@@ -83,9 +81,10 @@ def view_athlete_details(request):
     today = datetime.date.today()
     run = Runs.objects.filter(athlete=athlete).filter(date=today)
     if run.count() == 1:
-        run[0].status = "arrived"
-        run[0].save()
-        context['run'] = run[0]
+        this_run = run[0]
+        this_run.status = "arrived"
+        this_run.save()
+        context['run'] = this_run
     print(run)
 
     return render(request, "run/view_athlete_details.html", context)
