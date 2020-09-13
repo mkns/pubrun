@@ -5,6 +5,7 @@ import hashlib
 import datetime
 import configparser
 import ast
+import os.path
 from io import BytesIO
 from run.models import Athlete, Runs
 import qrcode
@@ -162,5 +163,6 @@ def get_config():
     return config
 
 def get_times_from_config(config):
-    times = ast.literal_eval(config.get("default", "times"))
+    #times = ast.literal_eval(config.get("default", "times"))
+    times = ["18:00", "18:10", "18:20"]
     return times
