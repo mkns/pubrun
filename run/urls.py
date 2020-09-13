@@ -13,4 +13,6 @@ urlpatterns = [
         name='view_qrview_athlete_details_code'),
     path('register_for_run', views.register_for_run, name='register_for_run'),
     path('add_athlete_to_run', views.add_athlete_to_run, name='add_athlete_to_run'),
+    path('show_registered_runners', views.show_registered_runners, \
+        name='show_registered_runners'),
 ]

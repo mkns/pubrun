@@ -3,6 +3,8 @@
 import uuid
 import hashlib
 import datetime
+import configparser
+import ast
 from io import BytesIO
 from run.models import Athlete, Runs
 import qrcode
@@ -30,7 +32,7 @@ def generate_qrcodes(request):
     print("First, let's see whether we have any to generate")
 
     # TODO: remember to put the filter back in
-    athletes = Athlete.objects.all()#filter(checksum__isnull=True)
+    athletes = Athlete.objects.filter(checksum__isnull=True)
 
     for athlete in athletes:
         print(athlete, athlete.id, athlete.email, athlete.checksum)
@@ -97,21 +99,29 @@ def get_athlete_from_data(data):
 
 def register_for_run(request):
     """ Show form so people can say they are coming to run """
+    dates = get_next_pubrun_dates()
+    config = get_config()
+    times = get_times_from_config(config)
+    context = {'dates': dates, "times": times}
+    print("register_for_run({},{})".format(dates, times))
+
+    return render(request, "run/register_for_run.html", context)
+
+def get_next_pubrun_dates():
+    """ Helper method to get the dates for the next week's pubruns """
     today = datetime.date.today()
     tuesday = today + datetime.timedelta( (1-today.weekday()) % 7 )
     sunday = today + datetime.timedelta( (6-today.weekday()) % 7 )
     dates = [tuesday, sunday]
     dates.sort()
-    context = {'dates': dates}
-    print("register_for_run({})".format(dates))
-
-    return render(request, "run/register_for_run.html", context)
+    return dates
 
 def add_athlete_to_run(request):
     """ Take the form contents and add a row to the Runs table """
     email = request.POST.get("email")
     date = request.POST.get("date")
-    print("add_athlete_to_run({}, {})".format(email, date))
+    time = request.POST.get("time")
+    print("add_athlete_to_run({}, {}, {})".format(email, date, time))
 
     athletes = Athlete.objects.filter(email=request.POST.get("email"))
     if athletes.count() != 1:
@@ -121,10 +131,28 @@ def add_athlete_to_run(request):
     print(athlete, athlete.id)
 
     try:
-        run = Runs.objects.create(athlete=athlete, date=date, status="registered")
+        run = Runs.objects.create(athlete=athlete, date=date, 
+            time=time, status="registered")
         run.save()
     except IntegrityError as error:
         print("Ouch... they probably already registered? {}".format(error))
 
     context = {}
+    # Change this to call show_registered_runners()
+    return show_registered_runners(request)
+
+def show_registered_runners(request):
+    """ Show people who have registered to run at an event """
+    runs = Runs.objects.all()
+    context = {'runs': runs}
     return render(request, "run/show_registered_runners.html", context)
+
+def get_config():
+    """ Gets the config file contents """
+    config = configparser.ConfigParser()
+    config.read('pubrun.conf')
+    return config
+
+def get_times_from_config(config):
+    times = ast.literal_eval(config.get("default", "times"))
+    return times

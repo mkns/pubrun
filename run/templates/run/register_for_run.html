@@ -27,6 +27,16 @@
             </td>
           </tr>
           <tr>
+            <td>Run Time</td>
+            <td>
+              <select name="time">
+                {% for time in times %}
+                <option value="{{time}}">{{time}}</option>
+                {% endfor %}                
+              </select>
+            </td>
+          </tr>
+          <tr>
             <td colspan="2"><input type="submit"></td>
           </tr>
         </<tbody>

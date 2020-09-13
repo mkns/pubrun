@@ -23,6 +23,7 @@ class Runs(models.Model):
     )
     athlete = models.ForeignKey(Athlete, on_delete=models.CASCADE, default=0)
     date = models.DateField(null=False)
+    time = models.TimeField(null=False, default="18:00")
     status = models.CharField(
         max_length=32,
         choices=STATUS,

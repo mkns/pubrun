@@ -8,5 +8,29 @@
 
     <h1>PubRun: </h1>
 
+
+    <table cellspacing=0 cellpadding=3 border=1>
+      <thead>
+          <tr>
+            <th>ID</th>
+            <th>Athlete</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+          </tr>
+      </thead>
+      <tbody>
+{% for run in runs %}
+          <tr>
+            <td>{{run.id}}</td>
+            <td>{{run.athlete}}</td>
+            <td>{{run.date}}</td>
+            <td>{{run.time}}</td>
+            <td>{{run.status}}</td>
+          </tr>
+{% endfor %}
+      </tbody>
+  </table>
+
   </body>
 </html>
