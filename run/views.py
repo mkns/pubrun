@@ -76,9 +76,17 @@ def view_athlete_details(request):
     provide a button or link to confirm that the person has
     indeed turned up for a run, if they have registered
     """
-    context = {}
     athlete = get_athlete_from_data(request.GET.get("data"))
     context = {"athlete": athlete}
+
+    today = datetime.date.today()
+    run = Runs.objects.filter(athlete=athlete).filter(date=today)
+    if run.count() == 1:
+        run[0].status = "arrived"
+        run[0].save()
+        context['run'] = run[0]
+    print(run)
+
     return render(request, "run/view_athlete_details.html", context)
 
 def get_athlete_from_data(data):

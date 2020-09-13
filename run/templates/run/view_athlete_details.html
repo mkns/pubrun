@@ -8,8 +8,13 @@
 
     <h1>PubRun: View Athlete Details</h1>
 
-    <p></p>
-
+    <p>
+      {% if run %}
+      This athlete has registered for a run today at {{ run.time }}.
+      They have been marked as arrived!
+      <a href="show_registered_runners">Go see the list of attendees</a>.
+    </p>
+      {% endif %}
     <table>
       <tbody>
         <tr>
