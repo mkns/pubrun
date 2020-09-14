@@ -147,7 +147,7 @@ def add_athlete_to_run(request):
     except IntegrityError as error:
         print("Ouch... they probably already registered? {}".format(error))
 
-    context = {}
+    # context = {}
     # Change this to call show_registered_runners()
     return show_registered_runners(request)
 
@@ -160,13 +160,12 @@ def show_registered_runners(request):
 def get_config():
     """ Gets the config file contents """
     config = configparser.ConfigParser()
-    dir = os.path.dirname(__file__)
-    config_file = os.path.join(dir, 'pubrun.conf')
-    print(config_file)
+    dir_name = os.path.dirname(__file__)
+    config_file = os.path.join(dir_name, 'pubrun.conf')
+    # print(config_file)
     config.read(config_file)
     return config
 
 def get_times_from_config(config):
     times = ast.literal_eval(config.get("default", "times"))
-    #times = ["18:00", "18:10", "18:20"]
     return times
