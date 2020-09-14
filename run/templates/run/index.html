@@ -15,14 +15,25 @@
     {% endif %}
 
     <ul>
-      <li><a href="/admin/">Admin Log In</a></li>
-      <li><a href="/accounts/login">Standard Log In</a></li>
-      <li><a href="/accounts/logout">Log Out</a></li>
-      <li><a href="generate_qrcodes">Generate QR Codes</a></li>
-      <li><a href="all_runners">All Runners</a></li>
+      <li><a href="/admin/run/athlete/">Add New Runners</a></li>
+      <li><a href="all_runners">Show All Runners</a></li>
+      <li><a href="generate_qrcodes">Generate QR Codes for New Runners</a></li>
       <li><a href="register_for_run">Register for a Run</a></li>
-      <li><a href="show_registered_runners">Show Registered Runners</a></li>
+      <li><a href="show_registered_runners">Show Runners Registered to Run</a></li>
+      <li><a href="/accounts/login">Log In</a></li>
+      <li><a href="/accounts/logout">Log Out</a></li>
     </ul>
+
+    <fieldset>
+      <legend>Add New Runners</legend>
+      A one-time activity for each runner; once added, they can register to attend anything
+      future PubRun
+    </fieldset>
+
+    <fieldset>
+      <legend>Show All Runners</legend>
+      A list of all people who are in the system and able to register to run
+    </fieldset>
 
 </body>
 </html>

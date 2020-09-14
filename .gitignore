@@ -5,3 +5,4 @@ poc/__pycache__/
 pubrun/__pycache__/
 run/__pycache__/
 run/migrations/__pycache__/
+.DS_Store

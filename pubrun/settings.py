@@ -130,4 +130,8 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/run/'
 LOGOUT_REDIRECT_URL = '/run/'
-STATIC_ROOT = "/home/mkns/pubrun/static"
+#STATIC_ROOT = "/home/mkns/pubrun/static"
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    "/home/mkns/pubrun/static",
+)
