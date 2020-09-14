@@ -14,6 +14,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 
+@login_required
 def index(request):
     """ Front page """
     context = {}
