@@ -17,6 +17,7 @@
             <th>Date</th>
             <th>Time</th>
             <th>Status</th>
+            <th>Update?</th>
           </tr>
       </thead>
       <tbody>
@@ -27,6 +28,11 @@
             <td>{{run.date}}</td>
             <td>{{run.time}}</td>
             <td>{{run.status}}</td>
+            <td>
+              {% if run.status == "registered" and run.date == today %}
+              <a href="view_athlete_details?data={{run.athlete.checksum}}{{run.athlete.id}}">Mark 'arrived'</a>
+              {% endif %}
+            </td>
           </tr>
 {% endfor %}
       </tbody>

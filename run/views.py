@@ -32,8 +32,7 @@ def generate_qrcodes(request):
     context = {}
     print("First, let's see whether we have any to generate")
 
-    # TODO: remember to put the filter back in
-    athletes = Athlete.objects.all()#filter(checksum__isnull=True)
+    athletes = Athlete.objects.filter(checksum__isnull=True)
 
     for athlete in athletes:
         print(athlete, athlete.id, athlete.email, athlete.checksum)
@@ -141,7 +140,7 @@ def add_athlete_to_run(request):
     print(athlete, athlete.id)
 
     try:
-        run = Runs.objects.create(athlete=athlete, date=date, 
+        run = Runs.objects.create(athlete=athlete, date=date,
             time=time, status="registered")
         run.save()
     except IntegrityError as error:
@@ -153,8 +152,9 @@ def add_athlete_to_run(request):
 
 def show_registered_runners(request):
     """ Show people who have registered to run at an event """
-    runs = Runs.objects.all()
-    context = {'runs': runs}
+    today = datetime.date.today()
+    runs = Runs.objects.filter(date__gte=today)
+    context = {'runs': runs, "today": today}
     return render(request, "run/show_registered_runners.html", context)
 
 def get_config():
@@ -167,5 +167,20 @@ def get_config():
     return config
 
 def get_times_from_config(config):
+    """ Gets the list of available run times from the config object """
     times = ast.literal_eval(config.get("default", "times"))
     return times
+
+@login_required
+def populate_test_data(request):
+    athletes = Athlete.objects.all()
+    today = datetime.date.today() # because frankly, for tests, we don't care if it isn't a Sun/Tue
+    r = Runs(athlete=athletes[0], date=today, time="18:00", status="registered")
+    r.save()
+    r = Runs(athlete=athletes[1], date=today, time="18:00", status="registered")
+    r.save()
+    r = Runs(athlete=athletes[3], date=today, time="18:10", status="registered")
+    r.save()
+    r = Runs(athlete=athletes[4], date=today, time="18:20", status="registered")
+    r.save()
+    return show_registered_runners(request)

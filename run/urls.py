@@ -15,4 +15,5 @@ urlpatterns = [
     path('add_athlete_to_run', views.add_athlete_to_run, name='add_athlete_to_run'),
     path('show_registered_runners', views.show_registered_runners, \
         name='show_registered_runners'),
+    path('populate_test_data', views.populate_test_data, name='populate_test_data'),
 ]

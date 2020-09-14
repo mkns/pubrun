@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>PubRun: PoC</title>
-    <link rel="stylesheet" type="text/css" href="/static/run/pubrun.css" >
-  </head>
-  <body>
 
+<head>
+  <meta charset="utf-8">
+  <title>PubRun: PoC</title>
+  <link rel="stylesheet" href="/static/run/pubrun.css">
+</head>
+
+<body>
+
+  <div id="content">
     <h1>PubRun: PoC</h1>
 
     {% if user.is_authenticated %}
@@ -25,16 +28,60 @@
       <li><a href="/accounts/logout">Log Out</a></li>
     </ul>
 
-    <fieldset>
-      <legend>Add New Runners</legend>
-      A one-time activity for each runner; once added, they can register to attend anything
-      future PubRun
-    </fieldset>
+    <div id="guides">
+      <fieldset>
+        <legend>Add New Runners</legend>
+        A one-time activity for each runner; once added, they can register to attend anything
+        future PubRun
+      </fieldset>
 
-    <fieldset>
-      <legend>Show All Runners</legend>
-      A list of all people who are in the system and able to register to run
-    </fieldset>
+      <fieldset>
+        <legend>Show All Runners</legend>
+        A list of all people who are in the system and able to register to run
+      </fieldset>
+
+      <fieldset>
+        <legend>Generate QR Codes</legend>
+        When we set up a new runner, we put in their name and email address. After that, we should
+        go to this page to generate new QR codes for any new runners, and that also allows us to
+        have a QR code for them.
+      </fieldset>
+
+      <fieldset>
+        <legend>Register for a Run</legend>
+        Here, people can go and indicate which run they are coming along to. They just need their
+        email address, and choose the date and time of the run. Dates will be the next Sunday and
+        Tuesday.
+      </fieldset>
+
+      <fieldset>
+        <legend>Show Runners Registered to Run</legend>
+        You guessed it - all runners who have indicated they are coming along to a run are show_registered_runners
+        in here
+      </fieldset>
+
+      <fieldset>
+        <legend>Log In / Log Out</legend>
+        Fairly obviously, links to log in and out. You really don't need to go to the log in page
+        though because you'll get directed there for any page that required credentials. Unlikely
+        to need to log out either, but hey, it's there just in case.
+      </fieldset>
+    </div>
+
+    <div id="instructions">
+      <h2>Instructions</h2>
+      <p>The organisers of PubRun (Lisa plus leadership team) will be able to set up new runners
+        on the system, view all registered runners, generate QR codes and view which runners have
+        indicated they are coming along to a run. Anonymous users (i.e. pubrunners themselves) will
+        be able to sign up for a run and view their QR codes.</p>
+
+      <p>When a runner comes along to a run, they will show one of the organisers their QR code. The organiser will
+        already have logged in on their phone / tablet to this site, and when they scan the QR code, it automatically
+        updates the register of runners to indicate that the person has "arrived", while also showing
+      the list of runners expected along to PubRun that day.</p>
+    </div>
+  </div>
 
 </body>
+
 </html>

@@ -1,13 +1,19 @@
 fieldset {
-  background-color: #eeeeee;
+  border-radius: 5px;
+  max-width: 300px;
+  float: left;
+  clear: none;
 }
 
 legend {
-  background-color: gray;
-  color: white;
   padding: 5px 10px;
+  font-weight: bold;
 }
 
 input {
   margin: 5px;
+}
+
+#instructions {
+  clear: both;
 }
