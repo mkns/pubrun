@@ -4,6 +4,7 @@ import uuid
 import hashlib
 import datetime
 import configparser
+import os
 from io import BytesIO
 from run.models import Athlete, Runs
 import qrcode
@@ -163,5 +164,6 @@ def get_config():
 
 def get_times_from_config(config):
     #times = ast.literal_eval(config.get("default", "times"))
+    print(os.path.dirname(__file__))
     times = ["18:00", "18:10", "18:20"]
     return times
