@@ -5,6 +5,7 @@ import hashlib
 import datetime
 import configparser
 import os
+import ast
 from io import BytesIO
 from run.models import Athlete, Runs
 import qrcode
@@ -159,11 +160,13 @@ def show_registered_runners(request):
 def get_config():
     """ Gets the config file contents """
     config = configparser.ConfigParser()
-    config.read('pubrun.conf')
+    dir = os.path.dirname(__file__)
+    config_file = os.path.join(dir, 'pubrun.conf')
+    print(config_file)
+    config.read(config_file)
     return config
 
 def get_times_from_config(config):
-    #times = ast.literal_eval(config.get("default", "times"))
-    print(os.path.dirname(__file__))
-    times = ["18:00", "18:10", "18:20"]
+    times = ast.literal_eval(config.get("default", "times"))
+    #times = ["18:00", "18:10", "18:20"]
     return times
